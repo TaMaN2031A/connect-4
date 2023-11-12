@@ -104,21 +104,27 @@ public class Gui extends JFrame {
                     currentPlayerLabel.setText("Final Score: " + x + " " + y);
 
                 }
-                for (int r = 0; r < ROWS; r++) {
-                    for (int col = 0; col < COLS; col++) {
-                        System.out.print(board[r][col] + " ");
-                    }
-                    System.out.println();
-                }
-                System.out.println("Chosen column is " + ai_chosen_column);
+
                 int ai_chosen_row = getEmptyRow(ai_chosen_column);
-                System.out.println("Chosen row is " + ai_chosen_row);
 
                 board[ai_chosen_row][ai_chosen_column] = currentPlayer;
                 updateButton(ai_chosen_row, ai_chosen_column);
                 currentPlayer = (byte) (3 - currentPlayer);
                 updateCurrentPlayerLabel();
                 enableButtonsInBottomRow();
+                int cnt = 0;
+                for (int r = 0; r < ROWS; r++) {
+                    for (int col = 0; col < COLS; col++) {
+                        if (board[r][col] != 0)
+                            cnt++;
+                    }
+                }
+                if(cnt == 42)
+                {
+                    long x = helper.calculateHeuristic(board, 2);
+                    long y = helper.calculateHeuristic(board, 1);
+                    currentPlayerLabel.setText("Final Score: " + x + " " + y);
+                }
             }
         }
         /*** TO DO **/

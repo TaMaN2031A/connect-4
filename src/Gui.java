@@ -11,13 +11,13 @@ public class Gui extends JFrame {
     Controller controller;
     private JButton[][] boardButtons;
     private JLabel currentPlayerLabel;
-
+    Helper helper = new Helper();
     private static final int ROWS = 6;
     private static final int COLS = 7;
     private static final int BUTTON_SIZE = 80;
 
-    private int[][] board;
-    private int currentPlayer;
+    private byte[][] board;
+    private byte currentPlayer;
 
     public Gui(Controller controller) {
         super("Connect 4");
@@ -48,7 +48,7 @@ public class Gui extends JFrame {
         add(currentPlayerLabel, BorderLayout.NORTH);
 
         currentPlayer = 1;
-        board = new int[ROWS][COLS];
+        board = new byte[ROWS][COLS];
         updateCurrentPlayerLabel();
 
         pack();
@@ -88,25 +88,40 @@ public class Gui extends JFrame {
             if (row != -1) {
                 board[row][col] = currentPlayer;
                 updateButton(row, col);
-                currentPlayer = 3 - currentPlayer;
+                currentPlayer = (byte) (3 - currentPlayer);
                 updateCurrentPlayerLabel();
                 enableButtonsInBottomRow();
-                int ai_chosen_column = controller.make_good_move(create_state(board));
+                byte[][] new_state = new byte[6][7];
+                for(int l = 0; l < 6; l++){
+                    for(int j = 0; j < 7; j++){
+                        new_state[l][j] = board[l][j];
+                    }
+                }
+                int ai_chosen_column = controller.make_good_move((new_state));
+                if(ai_chosen_column == -1){
+                    long x = helper.calculateHeuristic(new_state, 2);
+                    long y = helper.calculateHeuristic(new_state, 1);
+                    currentPlayerLabel.setText("Final Score: " + x + " " + y);
+
+                }
+                for (int r = 0; r < ROWS; r++) {
+                    for (int col = 0; col < COLS; col++) {
+                        System.out.print(board[r][col] + " ");
+                    }
+                    System.out.println();
+                }
                 System.out.println("Chosen column is " + ai_chosen_column);
                 int ai_chosen_row = getEmptyRow(ai_chosen_column);
                 System.out.println("Chosen row is " + ai_chosen_row);
 
                 board[ai_chosen_row][ai_chosen_column] = currentPlayer;
                 updateButton(ai_chosen_row, ai_chosen_column);
-                currentPlayer = 3 - currentPlayer;
+                currentPlayer = (byte) (3 - currentPlayer);
                 updateCurrentPlayerLabel();
                 enableButtonsInBottomRow();
             }
         }
         /*** TO DO **/
-        State create_state(int[][] board){
-            return new State();
-        }
     }
     private void updateButton(int row, int col) {
         if (board[row][col] == 1) {

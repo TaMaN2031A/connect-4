@@ -7,7 +7,7 @@ public class Controller {
         this.depth = depth;
         this.with = with;
     }
-    int make_good_move(State state){
+    int make_good_move(byte[][] state){
         if (with == 1) return model.minmax_with_pruning_decision(state, depth);
         return model.minmax_without_pruning_decision(state, depth);
     }

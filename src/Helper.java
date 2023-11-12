@@ -12,11 +12,12 @@ public class Helper {
                 for (int i = 0; i < 4; i++) {
                     if(state[row][col + i] == who)
                         counts++;
-
                 }
 
-                if(counts == 4)
+                if(counts == 4){
                     score++;
+                    System.out.println(row + " " + col);
+                }
             }
         }
 
@@ -30,8 +31,10 @@ public class Helper {
                         counts++;
                 }
 
-                if(counts == 4)
+                if(counts == 4){
                     score++;
+                    System.out.println(row + " " + col);
+                }
             }
         }
 
@@ -45,8 +48,10 @@ public class Helper {
                         counts++;
                 }
 
-                if (counts == 4)
+                if(counts == 4){
                     score++;
+                    System.out.println(row + " " + col);
+                }
             }
         }
 
@@ -61,8 +66,10 @@ public class Helper {
                         counts++;
                 }
 
-                if (counts == 4)
+                if(counts == 4){
                     score++;
+                    System.out.println(row + " " + col);
+                }
             }
         }
 

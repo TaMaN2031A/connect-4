@@ -117,7 +117,9 @@ public class Gui extends JFrame {
                     for (int col = 0; col < COLS; col++) {
                         if (board[r][col] != 0)
                             cnt++;
+                        System.out.print(board[r][col] + " ");
                     }
+                    System.out.println();
                 }
                 if(cnt == 42)
                 {

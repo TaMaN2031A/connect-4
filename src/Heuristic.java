@@ -68,7 +68,7 @@ public class Heuristic {
         int emptySquares = counts[0];
 
         if (computerPieces == 4) {
-            return 300;
+            return 600;
         } else if (computerPieces == 3 && emptySquares == 1) {
             return 200;
         } else if (computerPieces == 3 && userPieces == 1) {

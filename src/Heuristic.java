@@ -68,31 +68,31 @@ public class Heuristic {
         int emptySquares = counts[0];
 
         if (computerPieces == 4) {
-            return 600;
+            return 1000;
         } else if (computerPieces == 3 && emptySquares == 1) {
-            return 200;
+            return 900;
         } else if (computerPieces == 3 && userPieces == 1) {
-            return 50;
+            return 5;
         } else if (computerPieces == 2 && userPieces == 2) {
             return 0;
         } else if (computerPieces == 2 && emptySquares == 2) {
-            return 30;
+            return 400;
         } else if (computerPieces == 2 && userPieces == 1) {
             return 20;
         } else if (computerPieces == 1 && userPieces == 3) {
             return 0;
         } else if (computerPieces == 1 && userPieces == 0) {
-            return 0;
+            return 200;
         } else if (computerPieces == 1 && userPieces == 1) {
             return 0;
         } else if (computerPieces == 1 && userPieces == 2) {
             return 0;
         } else if (userPieces == 4) {
-            return -300;
+            return -1000;
         } else if (userPieces == 3 && emptySquares == 1) {
-            return -200;
+            return -1000; // -200 or -1000
         } else if (userPieces == 1 && emptySquares == 3) {
-            return 0;
+            return 200;
         } else if (userPieces == 2 && emptySquares == 2) {
             return -10;
         }

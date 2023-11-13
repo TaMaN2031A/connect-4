@@ -27,11 +27,11 @@ public class Gui extends JFrame {
 
         JPanel boardPanel = new JPanel();
         boardPanel.setLayout(new GridLayout(ROWS, COLS));
-
-        boardButtons = new JButton[ROWS][COLS];
+        boardPanel.setBackground(Color.blue);
+        boardButtons = new RoundButton[ROWS][COLS];
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
-                boardButtons[row][col] = new JButton();
+                boardButtons[row][col] = new RoundButton();
                 boardButtons[row][col].setPreferredSize(new Dimension(BUTTON_SIZE, BUTTON_SIZE));
                 boardButtons[row][col].setBackground(Color.WHITE);
                 boardButtons[row][col].setEnabled(false);
@@ -133,7 +133,7 @@ public class Gui extends JFrame {
     }
     private void updateButton(int row, int col) {
         if (board[row][col] == 1) {
-            boardButtons[row][col].setBackground(Color.RED);
+             boardButtons[row][col].setBackground(Color.RED);
         } else if (board[row][col] == 2) {
             boardButtons[row][col].setBackground(Color.YELLOW);
         }
@@ -146,5 +146,27 @@ public class Gui extends JFrame {
             }
         }
         return -1;
+    }
+}
+class RoundButton extends JButton {
+
+    public RoundButton() {
+        setOpaque(false); // Make the button transparent
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(getBackground());
+        g2.fillOval(0, 0, getWidth() - 1, getHeight() - 1);
+        g2.dispose();
+
+        super.paintComponent(g);
+    }
+
+    @Override
+    protected void paintBorder(Graphics g) {
+        // Do not paint the default button border
     }
 }

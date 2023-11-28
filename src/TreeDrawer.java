@@ -6,8 +6,10 @@ import org.apache.commons.collections15.Transformer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
 
 public class TreeDrawer {
@@ -21,14 +23,40 @@ public class TreeDrawer {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         DelegateTree<Integer, String> delegateTree = createSampleTree(arr);
-
-        VisualizationViewer<Integer, String> vv = new VisualizationViewer<>(new TreeLayout<>(delegateTree));
+        TreeLayout<Integer,String> treeLayout = new TreeLayout<>(delegateTree);
+        VisualizationViewer<Integer, String> vv = new VisualizationViewer<>(treeLayout);
         vv.getRenderContext().setVertexFillPaintTransformer(new NodeColorTransformer(arr));
         // Customize the size of the VisualizationViewer
         vv.setPreferredSize(new Dimension(150000, 600));
         vv.getRenderContext().setVertexLabelTransformer(new NodeLabelTransformer(delegateTree,arr));
         vv.getRenderContext().setEdgeArrowPredicate(edge -> false);
+        Map<Integer, ArrayList<Integer>> depthToVertices = new HashMap<>();
 
+        // Group vertices by depth
+        for (Integer vertex : treeLayout.getGraph().getVertices()) {
+            int depth = arr.get(vertex).getDepth();
+            depthToVertices.computeIfAbsent(depth, k -> new ArrayList<>()).add(vertex);
+        }
+
+        int startingX = 50;
+        int startingY = 400;
+        int horizontalSpacing = 40;
+        int verticalSpacing = 100;
+
+        // Place vertices based on depth
+        for (ArrayList<Integer> vertices : depthToVertices.values()) {
+            for (Integer vertex : vertices) {
+                Point2D location = treeLayout.transform(vertex);
+                location.setLocation(startingX + (horizontalSpacing * vertices.indexOf(vertex)), startingY);
+            }
+
+            // Adjust spacing for the next level
+            startingX += horizontalSpacing;
+            startingY -= verticalSpacing;
+
+            // Decrease spacing for the next level
+            horizontalSpacing *= 8;
+        }
         JPanel myPanel = new JPanel();
         myPanel.add(vv);
 
@@ -48,7 +76,7 @@ public class TreeDrawer {
         DelegateTree<Integer, String> delegateTree = new DelegateTree<>();
         arr.sort(Comparator.comparingInt(Node::getParent_id));
         delegateTree.setRoot(0);
-            System.out.print(arr.toString());
+        System.out.print(arr.toString());
 
         for(int i=1;i<arr.size();i++){
             delegateTree.addChild(Integer.toString(arr.get(i).getId())+":"+Integer.toString(arr.get(i).getValue()),arr.get(i).getParent_id(),arr.get(i).getId());

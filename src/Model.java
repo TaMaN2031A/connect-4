@@ -122,12 +122,11 @@ public class Model {
     int minmax_with_pruning_decision(byte[][] state, int depth){
         tree=new ArrayList<>();
         id=0;
-        long option = Long.MIN_VALUE; int which_column=-1; // 3 was used to test the ui only
-        // Warn el regala about the importance of the loop replacing the generate_next_states here, as
-        // depending on the best 'i' we'll return the answer. Cannot handle it till state is determined
-
+        long option = Long.MIN_VALUE; int which_column=-1;
         Node root = new Node(0,id++,-1,depth);
         this.tree.add(root);
+        long alpha = Long.MIN_VALUE;
+        long beta = Long.MAX_VALUE;
         for (int i = 0; i < 7; i++){
             int row = getEmptyRow(state, i);
             if(row == -1)
@@ -141,8 +140,8 @@ public class Model {
 
             new_state[row][i] = 1;
 
-            Node child = new Node(0,id++, root.getId(),depth-1);
-            long op = min_val_with_pruning(new_state, depth-1, Long.MIN_VALUE, Long.MAX_VALUE,child);
+            Node child = new Node(0, id++, root.getId(),depth-1);
+            long op = min_val_with_pruning(new_state, depth-1, alpha, beta, child);
             child.setValue((int)op);
             tree.add(child);
 
@@ -150,6 +149,7 @@ public class Model {
                 option = op;
                 which_column = i;
             }
+            alpha = max(option, alpha);
         }
         root.setValue((int) option);
         return which_column;

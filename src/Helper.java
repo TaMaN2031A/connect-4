@@ -1,5 +1,5 @@
 public class Helper {
-    public long calculateHeuristic(byte[][] state, int who) {
+    public long calculateScore(byte[][] state, int who) {
         int rows = state.length;
         int cols = state[0].length;
         long score = 0;
@@ -16,7 +16,7 @@ public class Helper {
 
                 if(counts == 4){
                     score++;
-                    System.out.println(row + " " + col);
+//                    System.out.println(row + " " + col);
                 }
             }
         }
@@ -33,7 +33,7 @@ public class Helper {
 
                 if(counts == 4){
                     score++;
-                    System.out.println(row + " " + col);
+//                    System.out.println(row + " " + col);
                 }
             }
         }
@@ -50,7 +50,7 @@ public class Helper {
 
                 if(counts == 4){
                     score++;
-                    System.out.println(row + " " + col);
+//                    System.out.println(row + " " + col);
                 }
             }
         }
@@ -68,7 +68,7 @@ public class Helper {
 
                 if(counts == 4){
                     score++;
-                    System.out.println(row + " " + col);
+//                    System.out.println(row + " " + col);
                 }
             }
         }

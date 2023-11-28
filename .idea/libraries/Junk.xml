@@ -1,0 +1,25 @@
+<component name="libraryTable">
+  <library name="Junk">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Junk/jung-jai-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/jung-samples-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/j3d-core-1.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/jung-jai-samples-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/jung-api-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/jung-algorithms-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/colt-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/jung-3d-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/concurrent-1.3.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/jung-io-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/jung-visualization-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/vecmath-1.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/jung-graph-impl-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/wstx-asl-3.2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/stax-api-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/jung-3d-demos-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Junk/collections-generic-4.01.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

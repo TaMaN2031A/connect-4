@@ -98,10 +98,11 @@ public class Gui extends JFrame {
                     }
                 }
                 int ai_chosen_column = controller.make_good_move((new_state));
+
                 if(ai_chosen_column == -1){
-                    long x = helper.calculateHeuristic(new_state, 2);
-                    long y = helper.calculateHeuristic(new_state, 1);
-                    currentPlayerLabel.setText("Final Score: " + x + " " + y);
+                    long x = helper.calculateScore(new_state, 2);
+                    long y = helper.calculateScore(new_state, 1);
+                    currentPlayerLabel.setText("Final Score: " + "Computer "+x + "  User  " + y);
 
                 }
 
@@ -117,15 +118,15 @@ public class Gui extends JFrame {
                     for (int col = 0; col < COLS; col++) {
                         if (board[r][col] != 0)
                             cnt++;
-                        System.out.print(board[r][col] + " ");
+//                        System.out.print(board[r][col] + " ");
                     }
-                    System.out.println();
+//                    System.out.println();
                 }
                 if(cnt == 42)
                 {
-                    long x = helper.calculateHeuristic(board, 2);
-                    long y = helper.calculateHeuristic(board, 1);
-                    currentPlayerLabel.setText("Final Score: " + x + " " + y);
+                    long x = helper.calculateScore(board, 2);
+                    long y = helper.calculateScore(board, 1);
+                    currentPlayerLabel.setText("Final Score: " + "Computer "+x + "  User  " + y);
                 }
             }
         }
